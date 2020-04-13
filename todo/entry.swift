@@ -8,26 +8,20 @@
 
 import Foundation
 class entry : NSObject{
-    
-    private var content : String;
-    private let creation_date = Date()
-    private var due_date : Date?
-    private var urgency : Urgency?
-    
-    public func getContent() -> String{
-        return content
-        
-    }
+   
+    let creation_date = Date()
+    @Published var content : String;
+    @Published var due_date : Date?
+    @Published var urgency : Urgency?
     
     init(content : String) {
         self.content = content
     }
-    
 }
 
 enum Urgency{
-    case LOW
-    case NORMAL
-    case HIGH
-    case SUPER_HIGH
-}
+       case LOW
+       case NORMAL
+       case HIGH
+       case SUPER_HIGH
+   }
