@@ -7,18 +7,27 @@
 //
 
 import Foundation
-class entry : ObservableObject{
-    var content : String;
-    var creation_date : Date
-    var due_date : Date
-    var urgency : Urgency
-    init(content : String, ) {
+class entry : NSObject{
+    
+    private var content : String;
+    private let creation_date = Date()
+    private var due_date : Date?
+    private var urgency : Urgency?
+    
+    public func getContent() -> String{
+        return content
         
     }
+    
+    init(content : String) {
+        self.content = content
+    }
+    
 }
 
 enum Urgency{
-    case High
-    case Normal
-    case Low
+    case LOW
+    case NORMAL
+    case HIGH
+    case SUPER_HIGH
 }
