@@ -9,25 +9,32 @@
 import SwiftUI
 
 struct EntryView: View {
-    var entry : entry
+    @Environment (\.managedObjectContext) var managedObjectContext
+    @FetchRequest(entity: Entry.entity(), sortDescriptors: [])
+    var entries: FetchedResults<Entry>
     var body: some View {
         HStack{
             VStack{
-                Text(entry.content)
-                    .font(.largeTitle)
-                    .foregroundColor(.green)
-                    .padding();
-                Spacer();
+                List{
+                    ForEach(self.entries, id: \.self){ entry in
+                        Text(entry.name ?? "")
+                            .font(.largeTitle)
+                            .foregroundColor(.green)
+                            .padding();
+                        Spacer();
+                    }
+                }
             }
             Spacer()
         }
-        
     }
 }
 
 struct EntryView_Previews: PreviewProvider {
     static var previews: some View {
-         
-        EntryView(entry: entry(content: "Fuck"))
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let entryEinkaufen = Entry(context: context)
+        entryEinkaufen.name = "Einkaufen"
+        return EntryView().environment(\.managedObjectContext, context)
     }
 }
