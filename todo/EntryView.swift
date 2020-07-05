@@ -28,6 +28,6 @@ struct EntryView: View {
 struct EntryView_Previews: PreviewProvider {
     static var previews: some View {
          
-        EntryView(entry: entry(content: "Okay"))
+        EntryView(entry: entry(content: "Fuck"))
     }
 }
